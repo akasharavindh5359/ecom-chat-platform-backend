@@ -5,9 +5,7 @@ public class MessageReponse {
 	
 	private String message;
 
-	public MessageReponse(String string) {
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public String getMessage() {
 		return message;
@@ -16,7 +14,12 @@ public class MessageReponse {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
 
+	public MessageReponse(String message) {
+		super();
+		this.message = message;
+	}
+	
+	
+	
 }
