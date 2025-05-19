@@ -62,8 +62,17 @@ public class WebSecurityConfigu {
 		http.csrf(csrf -> csrf.disable())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPointJwt))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
-						.requestMatchers("/api/test/**").permitAll().anyRequest().authenticated());
+//				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
+//						.requestMatchers("/api/test/**").permitAll().anyRequest().authenticated());
+				
+				.authorizeHttpRequests(auth -> auth
+		                .requestMatchers("/api/auth/**").permitAll() // Public endpoints like login/register
+		                .requestMatchers("/api/test/welcome").permitAll() // Public welcome page
+		                .requestMatchers("/api/user/**").authenticated()
+		                .requestMatchers("/api/admin/**").authenticated() // All others require authentication
+		                .requestMatchers("/api/moderator/**").authenticated()
+		                
+		                .anyRequest().authenticated());
 
 		http.authenticationProvider(authenticationProvider());
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

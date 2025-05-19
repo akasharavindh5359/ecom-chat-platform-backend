@@ -9,6 +9,18 @@ public class JwtResponse {
 	private Long id;
 	private String username;
 	private List<String>roles;
+	
+	public JwtResponse(String accessToken, Long id, String username, List<String> roles) {
+		super();
+		this.token = accessToken;
+		this.id = id;
+		this.username = username;
+		this.roles = roles;
+	}
+	
+	
+	
+	
 	public String getToken() {
 		return token;
 	}
@@ -39,25 +51,5 @@ public class JwtResponse {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	public JwtResponse(String token, Long id, String username, List<String> roles) {
-		super();
-		this.token = token;
-		this.id = id;
-		this.username = username;
-		this.roles = roles;
-	}
-	public JwtResponse() {
-		super();
-	}
-//	public JwtResponse(String jwt, int id, String username2, List<String> roles2) {
-//		super();
-//		this.token = jwt;
-//		this.id = id;
-//		this.id = id;
-//		this.username = username;
-//		this.roles = roles;
-//	}
-	
-	
 	
 }

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.login.security.entity.ERole;
 import com.login.security.entity.Role;
 import com.login.security.entity.User;
@@ -52,17 +51,29 @@ public class AuthControler {
 	@Autowired
 	JwtUtils jwtUtils;
 	
+//	@PostMapping("/signin")
+//	public ResponseEntity<?> authenticationUser(@Valid @RequestBody LoginRequest loginRequest){
+//		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//				loginRequest.getUsername(),loginRequest.getPassword()));
+//		SecurityContextHolder.getContext().setAuthentication(authentication);
+//		String jwt= jwtUtils.generateToken(authentication);
+//		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
+//		
+//		
+//		return ResponseEntity.ok(new JwtResponse(jwt,null,null,userDetails.getUsername(),roles));
+//		
+//	}
+	
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticationUser(@Valid @RequestBody LoginRequest loginRequest){
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-				loginRequest.getUsername(),loginRequest.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt= jwtUtils.generateToken(authentication);
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-		
-		
-		return ResponseEntity.ok(new JwtResponse(jwt,null,userDetails.getUsername(),roles));
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginReq){
+		Authentication authenication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getUsername(),loginReq.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authenication);
+		String jwt = jwtUtils.generateToken(authenication);
+		UserDetailsImpl userDetailes =(UserDetailsImpl) authenication.getPrincipal();
+		List<String>roles = userDetailes.getAuthorities().stream().map(item -> item.getAuthority())
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(new JwtResponse(jwt,null, userDetailes.getUsername(), roles));
 		
 	}
 	
@@ -92,7 +103,7 @@ public class AuthControler {
 				break;
 				
 				case "mod": 
-					Role modRole = roleRepository.findByName(ERole.ROLE_MADERATOR)
+					Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
 							.orElseThrow(()-> new RuntimeException("Error: Role is not Found"));
 					roles.add(modRole);
 				break;

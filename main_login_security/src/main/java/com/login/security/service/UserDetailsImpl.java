@@ -1,20 +1,17 @@
 package com.login.security.service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import com.login.security.entity.User;
 
 
 
-@Component
 public class UserDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = -3729353000645461862L;

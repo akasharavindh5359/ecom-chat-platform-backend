@@ -15,23 +15,41 @@ public class TestControler {
 		return "Public Access";
 	}
 	
-	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-	public String userAccess() {
-		return "User content.";
-	}
+//	@GetMapping("/user")
+//	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+//	public String userAccess() {
+//		return "User content.";
+//	}
+//	
+//	@GetMapping("/moderator")
+//	@PreAuthorize("hasRole('MODERATOR') or hasRole('USER')")
+//	public String modAccess() {
+//		return "mod content.";
+//	}
+//	
+//	@GetMapping("/admin")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	public String adminAccess() {
+//		return "admin content.";
+//	}
 	
-	@GetMapping("/mod")
-	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-	public String modAccess() {
-		return "mod content.";
-	}
-	
-	@GetMapping("/admin")
-	@PreAuthorize("hasRole('ADMIN')")
-	public String adminAccess() {
-		return "admin content.";
-	}
-	
+//	@GetMapping("/user")
+//	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+//	public String userAccess() {
+//		return "User content.";
+//	}
+//	
+//	@GetMapping("/moderator")
+//	@PreAuthorize("hasRole('MODERATOR') or hasRole('USER')")
+//	public String modAccess() {
+//		return "mod content.";
+//	}
+//	
+//	@GetMapping("/admin")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	public String adminAccess() {
+//		return "admin content.";
+//	}
+//	
 
 }

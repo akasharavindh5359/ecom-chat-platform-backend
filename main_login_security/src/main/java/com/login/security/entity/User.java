@@ -45,6 +45,26 @@ public class User {
 		this.password = password;
 	}
 
+	
+
+	public User(long id, @Size(max = 50) @NotBlank String username, @Size(max = 120) @NotBlank String password,
+			Set<Role> roles) {
+		super();
+		this.id = id;
+		Username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+	
+	
+
+
+
+	public User() {
+		super();
+	}
+
+
 
 	public long getId() {
 		return id;
@@ -86,20 +106,8 @@ public class User {
 		this.roles = roles;
 	}
 
-
-	public User(long id, @Size(max = 50) @NotBlank String username, @Size(max = 120) @NotBlank String password,
-			Set<Role> roles) {
-		super();
-		this.id = id;
-		Username = username;
-		this.password = password;
-		this.roles = roles;
-	}
-
-
-	public User() {
-		super();
-	}
+	
+	
 	
 	
 	
